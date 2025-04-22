@@ -41,8 +41,8 @@ namespace TankProject1
         {
             this.dt = dt;
             tank = new ComplexBlock();
-            tank.Add(new GainBlock(1 / t));
-            tank.Add(new LimitedIntBlock(dt, 0, 10));
+            tank.Add(new GainBlock(1/t));
+            tank.Add(new LimitedIntBlock(dt, 0, 100));
             this.dt = dt;
             gain1 = new GainBlock(K1);
             gain2 = new GainBlock(K2);
