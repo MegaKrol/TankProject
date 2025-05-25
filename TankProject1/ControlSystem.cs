@@ -10,7 +10,7 @@ namespace TankProject1
     public class ControlSystem
     {
         private double dt;
-        private PIDBlock pid;
+        public PIDBlock pid;
         private Tank Tank;
         private LimitBlock xLimit = new LimitBlock(0, 100);
         private LimitBlock levelLimit = new LimitBlock(0, 100);

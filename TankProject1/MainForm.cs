@@ -1,3 +1,4 @@
+﻿using SampleModel;
 using System.Runtime.CompilerServices;
 
 namespace TankProject1
@@ -134,6 +135,36 @@ namespace TankProject1
         {
             controlSystem.ManualMode = !controlSystem.ManualMode;
             btnAuto.Text = controlSystem.ManualMode ? "Manual" : "Auto";
+        }
+
+        public void ShowProcess(double[] vars, int series)
+        {
+            var maxTime = Criteria.maxTime;
+            ControlSystem sys = new ControlSystem(dt);
+            sys.pid.Kp = vars[0];
+            sys.pid.Ti = vars[1];
+            sys.pid.Kd = vars[2];
+            sys.SetPoint = 1;
+            var stepCnt = (int)(maxTime / dt);
+            modelChart.Series[series].Points.Clear();
+            for (int i = 0; i < stepCnt; i++)
+            {
+
+                modelChart.Series[series].Points.AddXY(sys.Time, sys.Output);
+                sys.Calc();
+            }
+        }
+
+        private void btnOptimize_Click(object sender, EventArgs e)
+        {
+            double[] p = { 1, 10, 0 }; // початкові параметри
+            var I1 = Criteria.I2Criteria(p);
+            ShowProcess(p, 4);
+            var steps = Optimization.SimplexMethod(ref p);
+            ShowProcess(p, 5);
+            var I2 = Criteria.I2Criteria(p);
+            //Optimization.PrintPoint(p);
+            MessageBox.Show(Optimization.PointToString(p) + $"\n I1={I1} I2={I2} steps={steps}");
         }
     }
 }

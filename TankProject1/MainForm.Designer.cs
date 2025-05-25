@@ -35,6 +35,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             btnStart = new Button();
             btnStop = new Button();
             modelTimer = new System.Windows.Forms.Timer(components);
@@ -57,6 +59,7 @@
             tbKd = new TextBox();
             lbY = new Label();
             btnAuto = new Button();
+            btnOptimize = new Button();
             ((System.ComponentModel.ISupportInitialize)modelChart).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -110,10 +113,20 @@
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Legend = "Legend1";
             series4.Name = "E";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "Before";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Legend = "Legend1";
+            series6.Name = "After";
             modelChart.Series.Add(series1);
             modelChart.Series.Add(series2);
             modelChart.Series.Add(series3);
             modelChart.Series.Add(series4);
+            modelChart.Series.Add(series5);
+            modelChart.Series.Add(series6);
             modelChart.Size = new Size(1255, 418);
             modelChart.TabIndex = 2;
             modelChart.Text = "chart1";
@@ -280,11 +293,22 @@
             btnAuto.UseVisualStyleBackColor = true;
             btnAuto.Click += btnAuto_Click;
             // 
+            // btnOptimize
+            // 
+            btnOptimize.Location = new Point(347, 122);
+            btnOptimize.Name = "btnOptimize";
+            btnOptimize.Size = new Size(112, 34);
+            btnOptimize.TabIndex = 21;
+            btnOptimize.Text = "Optimize";
+            btnOptimize.UseVisualStyleBackColor = true;
+            btnOptimize.Click += btnOptimize_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1400, 736);
+            Controls.Add(btnOptimize);
             Controls.Add(btnAuto);
             Controls.Add(lbY);
             Controls.Add(tbKd);
@@ -338,5 +362,6 @@
         private TextBox tbKd;
         private Label lbY;
         private Button btnAuto;
+        private Button btnOptimize;
     }
 }
